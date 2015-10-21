@@ -1,12 +1,14 @@
-**Time**:
+#Spring training
+
+##**Time**:
 
 8-16 hours
 
-**Expected result:**
+##**Expected result:**
 
 show demonstration and provide code.
 
-**Task description:**
+##**Task description:**
 
 1. Create Spring application with the following services and logic using either XML or Annotation configuration.
 2. Create domain objects as needed.
