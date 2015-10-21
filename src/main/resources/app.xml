@@ -5,7 +5,7 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean name="user" class="com.epam.training.spring.users.User">
+    <bean name="user" class="com.epam.training.spring.domains.User">
         <constructor-arg value="dzianis_sudas@epam.com"/>
         <constructor-arg value="Dzianis Sudas"/>
     </bean>
