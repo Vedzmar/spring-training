@@ -21,7 +21,7 @@ show demonstration and provide code.
  - getById
  - getUserByEmail
  - getUsersByName
- - getBookedTickets
+ - getUserByTicket
 
 ##_EventService_ - Manages events (movie shows)
 

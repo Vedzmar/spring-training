@@ -1,24 +1,31 @@
 package com.epam.training.spring.domains;
 
-/**
- * Created by Dzianis_Sudas on 10/21/2015.
- */
-public class User {
-    
-    private long id;
+import java.util.Date;
+
+
+public class User extends GenericEntity {
+
     private String email;
     private String name;
+    private Date birthday;
 
-    public User(String email, String name) {
-        this.id = System.currentTimeMillis();
+    public User(String email, String name, Date birthday) {
+        super( System.currentTimeMillis() );
         this.email = email;
         this.name = name;
+        this.birthday = birthday;
     }
 
-    public User(long id, String email, String name) {
-        this.id = id;
-        this.email = email;
-        this.name = name;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
     }
 
     @Override
@@ -27,6 +34,7 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
+                ", birthday=" + birthday +
                 '}';
     }
 }

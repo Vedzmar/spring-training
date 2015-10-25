@@ -1,20 +1,17 @@
 package com.epam.training.spring.services;
 
-import com.epam.training.spring.domains.Ticket;
 import com.epam.training.spring.domains.User;
 
+import java.util.Date;
 
-public interface UserService {
+
+public interface UserService extends GenericService<User> {
     
-    public User register(User user);
+    public User register(String name, String email, Date birthday);
     
     public User remove(User user);
-    
-    public User getById(long id);
     
     public User getUserByEmail(String email);
     
     public User getUsersByName(String name);
-    
-    public User getUserByTicket(Ticket ticket);
 }
