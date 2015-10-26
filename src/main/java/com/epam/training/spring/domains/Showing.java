@@ -14,4 +14,25 @@ public class Showing extends GenericEntity {
         this.theatre = theatre;
         this.date = date;
     }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public Theatre getTheatre() {
+        return theatre;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    @Override
+    public String toString() {
+        return "Showing{" +
+                "movie=" + movie +
+                ", theatre=" + theatre +
+                ", date=" + date +
+                '}';
+    }
 }
