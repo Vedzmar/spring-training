@@ -8,11 +8,19 @@ import javax.inject.Inject;
 
 public class EachTenTicketDiscountStrategy implements DiscountStrategy {
 
+    public static final float DEFAULT_EVERY_TEN_DISCOUNT_FACTOR = .5f;
+
     @Inject
     private BookingService bookingService;
     
     @Override
     public float getDiscount(Showing showing, User user, boolean isVip) {
-        return 0;
+        long ticketsCount = bookingService.getTicketsByUser(user).size();
+
+        if (ticketsCount % 10 == 9){
+            return DEFAULT_EVERY_TEN_DISCOUNT_FACTOR;
+        }
+
+        return 1;
     }
 }

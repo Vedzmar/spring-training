@@ -4,11 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    
+    <bean id="id3" name="discountService"  class="com.epam.training.spring.services.impl.DiscountServiceImpl" />
     <bean name="bookingService" class="com.epam.training.spring.services.impl.BookingServiceImpl">
-        <constructor-arg >
-            <bean class="com.epam.training.spring.services.impl.DiscountServiceImpl" />
-        </constructor-arg>
+        <constructor-arg ref="discountService"/>
     </bean>
 
 </beans>

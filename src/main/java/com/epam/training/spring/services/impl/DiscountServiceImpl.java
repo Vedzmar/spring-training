@@ -5,15 +5,19 @@ import com.epam.training.spring.domains.Showing;
 import com.epam.training.spring.domains.User;
 import com.epam.training.spring.services.DiscountService;
 import com.epam.training.spring.services.discount.DiscountStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 
 public class DiscountServiceImpl implements DiscountService {
-    
-    @Inject
-    List<DiscountStrategy> discountStrategies;
-    
+
+    @Resource
+    public List<DiscountStrategy> discountStrategies;
+
+
     @Override
     public float getDiscount(Showing showing, User user, boolean isVip) {
         float discount = 1;
@@ -27,5 +31,9 @@ public class DiscountServiceImpl implements DiscountService {
         }
         
         return discount;
+    }
+
+    public List<DiscountStrategy> getDiscountStrategies(){
+        return discountStrategies;
     }
 }

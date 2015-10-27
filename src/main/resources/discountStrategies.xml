@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="birthdayDiscountStrategy" class="com.epam.training.spring.services.discount.BirthdayDiscountStrategy"/>
-    <bean name="eachTenTicketDiscountStrategy" class="com.epam.training.spring.services.discount.EachTenTicketDiscountStrategy"/>
+    <bean id="id1" name="birthdayDiscountStrategy" class="com.epam.training.spring.services.discount.BirthdayDiscountStrategy"/>
+    <bean id="id2" name="eachTenTicketDiscountStrategy" class="com.epam.training.spring.services.discount.EachTenTicketDiscountStrategy"/>
 
 </beans>
