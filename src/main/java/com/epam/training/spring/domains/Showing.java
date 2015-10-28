@@ -9,7 +9,7 @@ public class Showing extends GenericEntity {
     private Date    date;
 
     public Showing( Movie movie, Theatre theatre, Date date) {
-        super(System.currentTimeMillis());
+        super(System.nanoTime());
         this.movie = movie;
         this.theatre = theatre;
         this.date = date;

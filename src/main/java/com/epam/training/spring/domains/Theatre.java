@@ -8,7 +8,7 @@ public class Theatre extends GenericEntity {
     private int vipSeatsCount;
 
     public Theatre(String name, int seatsCount, int vipSeatsCount) {
-        super( System.currentTimeMillis() );
+        super( System.nanoTime() );
         this.name = name;
         this.seatsCount = seatsCount;
         this.vipSeatsCount = vipSeatsCount;

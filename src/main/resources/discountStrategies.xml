@@ -5,6 +5,6 @@
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="id1" name="birthdayDiscountStrategy" class="com.epam.training.spring.services.discount.BirthdayDiscountStrategy"/>
-    <bean id="id2" name="eachTenTicketDiscountStrategy" class="com.epam.training.spring.services.discount.EachTenTicketDiscountStrategy"/>
+    <bean id="id2" name="eachTenTicketDiscountStrategy" class="com.epam.training.spring.services.discount.EachTenthTicketDiscountStrategy"/>
 
 </beans>

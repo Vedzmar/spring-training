@@ -21,46 +21,58 @@ show demonstration and provide code.
  - getById
  - getUserByEmail
  - getUsersByName
- - getUserByTicket
 
-##_EventService_ - Manages events (movie shows)
+##_MovieService_ - Manages movies
 
- - create - should create Event with name, air dates and times, base price for tickets, rating (high, mid, low)
- - remove
- - getByName 
- - getAll
- - getForDateRange(from, to) - returns events for specified date range (OPTIONAL)
- - getNextEvents(to) - returns events from now till the ‘to’ date (OPTIONAL)
- - assignAuditorium(event, auditorium, date) - assign auditorium for event for specific date
+ - createMovie - should create Movie with name, duration base price for tickets, rating (high, mid, low)
+ - deleteMovie
+ - getAllMovies
+ - getMoviesByName 
+ - getMoviesByRating
 
-##_AuditoriumService_ - Returns info about auditoriums and places
+##_ShowingService_ - Manages movie events 
+
+ - createShowing - should create Showing with movie, theatre (movie theatre), date of event
+ - removeShowing
+ - getAllShowing
+ - getShowingsByMovie(Movie) - returns all showing events with this movie
+ - getShowingByTheatre(Theatre) - returns all showing events with this movie theatre
+ - getShowingByTheatreAndDate(Theatre theatre, Date from, Date to) - returns all showing events with this movie theatre 
+ for particular date range
+ - getShowingByTheatreAndDate(Theatre theatre, Date to) - same as getShowingByTheatreAndDate starting from now
+
+##_TheatreService_ - Returns info about cinema theatres and places
 
 Since auditorium information is usually static, store it in some property file. The information that needs to be stored is:
 
  - name
  - number of seats
- - vip seats (comma-separated list of expensive seats)
+ - number of vip seats 
  
 Several auditoriums can be stored in separate property files, 
-information from them could be injected into the AuditoriumService
+information from them could be injected into the TheatreService
 
- - getAuditoriums()
- - getSeatsNumber()
- - getVipSeats()
+ - getAllTheatres()
+ - getById()
 
 ##_BookingService_ - Manages tickets, prices, bookings
 
- - getTicketPrice(event, date, time, seats, user) - returns price for ticket for specified event on specific date and time for specified seats.
- - bookTicket(user, ticket) - user could  be registered or not. If user is registered, then booking information is stored for that user. Purchased tickets for particular event should be stored
- - getTicketsForEvent(event, date) - get all purchased tickets for event for specific date
-
+ - bookTicket( showing,  user,  isVip) can throw HasNoTicketException;
+ - getAllTickets();
+ - getTicketsByUser( user );
+ - getAvailableTickets( showing );
+ - getAvailableVipTickets( showing );
+ - getTicketsByShowing( showing );
+ - getVipTicketsByShowing( showing );
+ - getById(id)
+ 
 ##_DiscountService_ - Counts different discounts for purchased tickets
 
- - getDiscount(user, event, date) - returns discount for each ticket for the user on particular event
+ - getDiscount(user, showing, date) - returns discount for each ticket for the user on particular event
  
 ##_DiscountStrategy_ - single class with logic for calculating discount
 
- - Birthday strategy - give 5% if user has birthday
+ - Birthday strategy - give 10% if user has birthday
  - Every 10th ticket - give 50% for every 10th ticket purchased by user
 
 All discount strategies should be injected as list into the DiscountService. The getDiscount method will execute each strategy to get max available discount.

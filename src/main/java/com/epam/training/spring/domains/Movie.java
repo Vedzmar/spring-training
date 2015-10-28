@@ -9,7 +9,7 @@ public class Movie extends GenericEntity {
     private Rating rating;
 
     public Movie(String name, long duration, float basePrice, Rating rating) {
-        super( System.currentTimeMillis() );
+        super( System.nanoTime() );
         this.name = name;
         this.duration = duration;
         this.basePrice = basePrice;

@@ -9,8 +9,8 @@ public class User extends GenericEntity {
     private String name;
     private Date birthday;
 
-    public User(String email, String name, Date birthday) {
-        super( System.currentTimeMillis() );
+    public User( String name, String email, Date birthday) {
+        super( System.nanoTime() );
         this.email = email;
         this.name = name;
         this.birthday = birthday;

@@ -7,6 +7,19 @@ import com.epam.training.spring.domains.User;
 
 import java.util.List;
 
+/**
+ * BookingService - Manages tickets, prices, bookings
+
+ - bookTicket( showing,  user,  isVip) can throw HasNoTicketException;
+ - getAllTickets();
+ - getTicketsByUser( user );
+ - getAvailableTickets( showing );
+ - getAvailableVipTickets( showing );
+ - getTicketsByShowing( showing );
+ - getVipTicketsByShowing( showing );
+ - getById(id)
+
+ */
 public interface BookingService extends GenericService<Ticket> {
     
     Ticket bookTicket(Showing showing, User user, boolean isVip) throws HasNoTicketException;

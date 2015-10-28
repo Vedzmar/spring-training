@@ -6,10 +6,20 @@ import com.epam.training.spring.domains.Rating;
 
 import java.util.List;
 
+/**
+ * MovieService - Manages movies
+
+ - createMovie - should create Movie with name, duration base price for tickets, rating (high, mid, low)
+ - deleteMovie
+ - getAllMovies
+ - getMoviesByName
+ - getMoviesByRating
+ */
 public interface MovieService extends GenericService<Movie>{
 
     Movie createMovie(String name, long duration, float basePrice, Rating rating);
-    void deleteMovie();
+
+    void deleteMovie(Movie movie);
 
     List<Movie> getAllMovies();
     List<Movie> getMoviesByName(String name);

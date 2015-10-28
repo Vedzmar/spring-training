@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean name="dateFormatter" factory-method="forPattern" class="org.joda.time.format.DateTimeFormat">
+        <constructor-arg index="0" value="dd-MM-yyyy"/>
+    </bean>
+
+    <bean name="me" factory-bean="userService" factory-method="register"  >
+        <constructor-arg index="0" value="Dzianis"/>
+        <constructor-arg index="1" value="dzianis_sudas@epam.com"/>
+        <constructor-arg index="2" >
+            <bean class="java.util.Date">
+                <constructor-arg>
+                    <bean factory-bean="dateFormatter" factory-method="parseMillis">
+                        <constructor-arg value="27-06-1990"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean name="TheMartianMovie" factory-bean="movieService" factory-method="createMovie">
+        <constructor-arg index="0" value="The Martian"/>
+        <constructor-arg index="1" value="#{144 * 60 * 1000}"/>
+        <constructor-arg index="2" value="40.0f"/>
+        <constructor-arg index="3" value="HIGH"/>
+    </bean>
+
+    <bean name="allTheaters" factory-bean="theatreService" factory-method="getAllTheatres"/>
+
+    <bean name="mir" factory-bean="allTheaters" factory-method="get">
+        <constructor-arg value="0"/>
+    </bean>
+
+    <bean name="theMartianShow" factory-bean="showingService" factory-method="createShowing">
+        <constructor-arg index="0" ref="TheMartianMovie"/>
+        <constructor-arg index="1" ref="mir"/>
+        <constructor-arg index="2" >
+            <bean class="java.util.Date">
+                <constructor-arg>
+                    <bean factory-bean="dateFormatter" factory-method="parseMillis">
+                        <constructor-arg value="27-06-2016"/>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <bean name="myMartianTicket" factory-bean="bookingService" factory-method="bookTicket">
+        <constructor-arg index="0" ref="theMartianShow"/>
+        <constructor-arg index="1" ref="me"/>
+        <constructor-arg index="2" value="true"/>
+    </bean>
+</beans>

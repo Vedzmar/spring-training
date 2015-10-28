@@ -6,7 +6,10 @@ import com.epam.training.spring.services.BookingService;
 
 import javax.inject.Inject;
 
-public class EachTenTicketDiscountStrategy implements DiscountStrategy {
+/**
+ * 50% discount for every tenth ticket
+ */
+public class EachTenthTicketDiscountStrategy implements DiscountStrategy {
 
     public static final float DEFAULT_EVERY_TEN_DISCOUNT_FACTOR = .5f;
 

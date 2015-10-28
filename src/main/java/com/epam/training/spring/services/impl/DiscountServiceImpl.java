@@ -18,6 +18,12 @@ public class DiscountServiceImpl implements DiscountService {
     public List<DiscountStrategy> discountStrategies;
 
 
+    /**
+     * @param showing
+     * @param user
+     * @param isVip
+     * @return max discount value from all possible discounts
+     */
     @Override
     public float getDiscount(Showing showing, User user, boolean isVip) {
         float discount = 1;
@@ -33,7 +39,4 @@ public class DiscountServiceImpl implements DiscountService {
         return discount;
     }
 
-    public List<DiscountStrategy> getDiscountStrategies(){
-        return discountStrategies;
-    }
 }

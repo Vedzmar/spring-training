@@ -8,7 +8,7 @@ public class Ticket extends GenericEntity {
     private float price;
 
     public Ticket(Showing showing, User user, boolean isVip, float price) {
-        super( System.currentTimeMillis() );
+        super( System.nanoTime() );
         this.showing = showing;
         this.user = user;
         this.isVip = isVip;

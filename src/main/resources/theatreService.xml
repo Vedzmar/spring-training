@@ -12,7 +12,7 @@
         </property>
     </bean>
 
-    <bean name="TheatreService" class="com.epam.training.spring.services.impl.TheatreServiceImpl">
+    <bean name="theatreService" class="com.epam.training.spring.services.impl.TheatreServiceImpl">
         <constructor-arg>
             <list>
                 <bean class="com.epam.training.spring.domains.Theatre">
