@@ -8,7 +8,7 @@
 
     <context:component-scan base-package="com.epam.training.spring" />
 
-    <bean id="id3" name="discountService"  class="com.epam.training.spring.services.impl.DiscountServiceImpl" />
+    <bean name="discountService"  class="com.epam.training.spring.services.impl.DiscountServiceImpl" />
     <bean name="bookingService" class="com.epam.training.spring.services.impl.BookingServiceImpl">
         <constructor-arg ref="discountService"/>
     </bean>

@@ -77,3 +77,20 @@ information from them could be injected into the TheatreService
 
 All discount strategies should be injected as list into the DiscountService. The getDiscount method will execute each strategy to get max available discount.
 Define DiscountService with all strategies as separate beans in separate configuration file (either separate XML or separate Java config class)
+
+#_AOP Task_
+
+##_CounterAspect_ 
+
+count how many times each Showing was accessed by name, 
+how many times its tickets were booked. 
+Store counters in map for now (later could be replaced by DB dao)
+
+##_DiscountAspect_ 
+count how many times each discount was given total and for specific user
+
+##_LuckyWinnerAspect_ 
+every time the bookTicket method is executed perform the checkLucky method for the user that based on some randomness 
+will return true or false. 
+If user is lucky, the ticketPrice changes to zero and ticket is booked,thus user pays nothing. 
+Store the information about this lucky event into the user object (like some system messages or so) - OPTIONAL
