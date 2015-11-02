@@ -8,5 +8,7 @@
     <aop:aspectj-autoproxy />
 
     <bean name="counterAspect" class="com.epam.training.spring.aspects.CounterAspect"/>
+    <bean name="discountAspect" class="com.epam.training.spring.aspects.DiscountAspect"/>
+    <bean name="luckyWinnerAspect" class="com.epam.training.spring.aspects.LuckyWinnerAspect"/>
 
 </beans>

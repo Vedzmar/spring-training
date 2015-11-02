@@ -25,10 +25,10 @@ public class CounterAspect implements ShowingCounter {
 
     private Map<Showing, Integer> showingTicketBooking = new HashMap<>();
 
-    @Pointcut("execution(* com.epam.training.spring.services.ShowingService.getShowingsByMovie(..))")
+    @Pointcut("execution(* *..ShowingService.getShowingsByMovie(..))")
     private void whenAskShowingByMovie(){}
 
-    @Pointcut("execution(* com.epam.training.spring.services.BookingService.bookTicket(..))")
+    @Pointcut("execution(* *..BookingService.bookTicket(..))")
     private void whenBookedTicket(){}
 
     @AfterReturning(

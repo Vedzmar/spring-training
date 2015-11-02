@@ -66,7 +66,7 @@ public class BookingServiceImpl implements BookingService {
         List<Ticket> userTickets = new ArrayList<Ticket>();
         
         for (Ticket ticket : tickets){
-            if (ticket.getUser() == user) userTickets.add(ticket);
+            if (ticket.getUser().getId() == user.getId()) userTickets.add(ticket);
             
         }
         
@@ -89,7 +89,7 @@ public class BookingServiceImpl implements BookingService {
         List<Ticket> vipTicketsByShowing = new ArrayList<Ticket>();
 
         for (Ticket ticket : tickets){
-            if (ticket.getShowing() == showing && ticket.isVip()) vipTicketsByShowing.add(ticket);
+            if (ticket.getShowing().getId() == showing.getId() && ticket.isVip()) vipTicketsByShowing.add(ticket);
 
         }
 
@@ -101,7 +101,7 @@ public class BookingServiceImpl implements BookingService {
         List<Ticket> ticketsByShowing = new ArrayList<Ticket>();
 
         for (Ticket ticket : tickets){
-            if (ticket.getShowing() == showing) ticketsByShowing.add(ticket);
+            if (ticket.getShowing().getId() == showing.getId()) ticketsByShowing.add(ticket);
 
         }
 
