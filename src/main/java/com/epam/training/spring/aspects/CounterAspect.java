@@ -5,8 +5,10 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,9 @@ import java.util.Map;
  */
 @Aspect
 public class CounterAspect implements ShowingCounter {
+
+    @Inject
+    private JdbcTemplate jdbcTemplate;
 
     private Map<Showing, Integer> showingAccessing = new HashMap<>();
 
@@ -43,7 +48,14 @@ public class CounterAspect implements ShowingCounter {
 
     @Before("whenBookedTicket() && args(showing,..)")
     public void countBookedTicketsByShowingAdvice(Showing showing){
-        initOrIncrement(showingTicketBooking, showing);
+
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM counter_aspect WHERE showing_id = ?",
+                new Object[]{ showing.getId() },
+                Integer.class
+            );
+
+        System.out.println(count);
+
     }
 
     private void initOrIncrement(Map<Showing, Integer> map, Showing showing) {

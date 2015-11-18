@@ -1,0 +1,4 @@
+CREATE TABLE COUNTER_ASPECT (
+  showing_id BIGINT PRIMARY KEY ,
+  number BIGINT
+);
