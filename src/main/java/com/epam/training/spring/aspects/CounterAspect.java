@@ -29,10 +29,6 @@ public class CounterAspect implements ShowingCounter {
     @Inject
     private JdbcTemplate jdbcTemplate;
 
-    private Map<Showing, Integer> showingAccessing = new HashMap<>();
-
-    private Map<Showing, Integer> showingTicketBooking = new HashMap<>();
-
     @Pointcut("execution(* *..ShowingService.getShowingsByMovie(..))")
     private void whenAskShowingByMovie(){}
 
