@@ -9,11 +9,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import javax.inject.Inject;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static com.epam.training.spring.aspects.DbHelper.createOrUpdateTable;
+import static com.epam.training.spring.aspects.DbHelper.createOrUpdateRecord;
 import static com.epam.training.spring.aspects.DbHelper.getCountByTableAndId;
 
 /**
@@ -41,13 +39,13 @@ public class CounterAspect implements ShowingCounter {
     )
     public void countAccessShowingAdvice(List<Showing> showings){
         for (Showing showing : showings){
-            createOrUpdateTable(jdbcTemplate, "counter_access", showing.getId());
+            createOrUpdateRecord(jdbcTemplate, "counter_access", showing.getId());
         }
     }
 
     @Before("whenBookedTicket() && args(showing,..)")
     public void countBookedTicketsByShowingAdvice(Showing showing){
-        createOrUpdateTable(jdbcTemplate, "counter_booked", showing.getId());
+        createOrUpdateRecord(jdbcTemplate, "counter_booked", showing.getId());
     }
 
     @Override

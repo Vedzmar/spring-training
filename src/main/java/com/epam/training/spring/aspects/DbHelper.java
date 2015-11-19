@@ -4,13 +4,24 @@ package com.epam.training.spring.aspects;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 final public class DbHelper {
-    public static long getCountByTableAndId(JdbcTemplate jdbcTemplate, String tableName, long id){
-        return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM " + tableName + " WHERE showing_id = ?",
+    private static boolean isExists(JdbcTemplate jdbcTemplate, String tableName, long id){
+        long count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM " + tableName + " WHERE showing_id = ?",
                 new Object[]{ id },
                 Long.class);
+
+        return count > 0;
     }
 
-    public static void createOrUpdateTable(JdbcTemplate jdbcTemplate, String tableName, long showingId){
+    public static long getCountByTableAndId(JdbcTemplate jdbcTemplate, String tableName, long id){
+        if (isExists(jdbcTemplate, tableName, id))
+            return jdbcTemplate.queryForObject("SELECT number FROM " + tableName + " WHERE showing_id = ?",
+                new Object[]{ id },
+                Long.class);
+
+        return 0;
+    }
+
+    public static void createOrUpdateRecord(JdbcTemplate jdbcTemplate, String tableName, long showingId){
         long count = getCountByTableAndId(jdbcTemplate, tableName, showingId);
 
         if (count == 0){
