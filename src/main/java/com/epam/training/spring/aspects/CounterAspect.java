@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.epam.training.spring.aspects.DbHelper.createOrUpdateTable;
+import static com.epam.training.spring.aspects.DbHelper.getCountByTableAndId;
+
 /**
  *
  * count how many times each Showing was accessed by name,
@@ -42,42 +45,22 @@ public class CounterAspect implements ShowingCounter {
     )
     public void countAccessShowingAdvice(List<Showing> showings){
         for (Showing showing : showings){
-            initOrIncrement(showingAccessing, showing);
+            createOrUpdateTable(jdbcTemplate, "counter_access", showing.getId());
         }
     }
 
     @Before("whenBookedTicket() && args(showing,..)")
     public void countBookedTicketsByShowingAdvice(Showing showing){
-
-        int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM counter_aspect WHERE showing_id = ?",
-                new Object[]{ showing.getId() },
-                Integer.class
-            );
-
-        System.out.println(count);
-
-    }
-
-    private void initOrIncrement(Map<Showing, Integer> map, Showing showing) {
-        if (!map.containsKey(showing)){
-            map.put(showing, 0);
-        }
-
-        int count = map.get(showing);
-        map.put(showing, count + 1);
+        createOrUpdateTable(jdbcTemplate, "counter_booked", showing.getId());
     }
 
     @Override
-    public int getAccessCount(Showing showing) {
-        if (!showingAccessing.containsKey(showing)) return 0;
-
-        return showingAccessing.get(showing);
+    public long getAccessCount(Showing showing) {
+        return getCountByTableAndId(jdbcTemplate, "counter_access", showing.getId());
     }
 
     @Override
-    public int getBookCount(Showing showing) {
-        if (!showingTicketBooking.containsKey(showing)) return 0;
-
-        return showingTicketBooking.get(showing);
+    public long getBookCount(Showing showing) {
+        return getCountByTableAndId(jdbcTemplate, "counter_booked", showing.getId());
     }
 }
